@@ -27,7 +27,8 @@ router.post('/shorten', async (req, res) => {
           let url = await Url.findOne({ longUrl:longUrl })
 
           if (url) {
-              res.status(403).json({      //check once 
+              res.status(403).json({
+                message: "URL already exist.",
                 data : url
               })
           } else {
@@ -39,7 +40,7 @@ router.post('/shorten', async (req, res) => {
               }).save();
               res.status(200).json({
                 status : "SUCCESS",
-                message : "Shorten URL created successfully.",   // check once 
+                message : "Shorten URL created successfully.",
                 data:url
             })
           }
